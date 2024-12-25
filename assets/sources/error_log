@@ -1,0 +1,9 @@
+[05-May-2024 01:55:45 UTC] PHP Warning:  imagecreatefromjpeg(): gd-jpeg: JPEG library reports unrecoverable error: Not a JPEG file: starts with 0x52 0x49 in /home/kissmeet/public_html/assets/sources/upload.php on line 349
+[05-May-2024 01:55:45 UTC] PHP Warning:  imagecreatefromjpeg(): 'uploads/6636e7218d9d0_intro1.jpg' is not a valid JPEG file in /home/kissmeet/public_html/assets/sources/upload.php on line 349
+[05-May-2024 01:55:45 UTC] PHP Warning:  exif_read_data(6636e7218d9d0_intro1.jpg): File not supported in /home/kissmeet/public_html/assets/sources/upload.php on line 353
+[05-May-2024 01:55:45 UTC] PHP Warning:  imagesx() expects parameter 1 to be resource, bool given in /home/kissmeet/public_html/assets/sources/upload.php on line 369
+[05-May-2024 01:55:45 UTC] PHP Warning:  imagesy() expects parameter 1 to be resource, bool given in /home/kissmeet/public_html/assets/sources/upload.php on line 370
+[05-May-2024 01:55:45 UTC] PHP Warning:  Division by zero in /home/kissmeet/public_html/assets/sources/upload.php on line 371
+[05-May-2024 01:55:45 UTC] PHP Warning:  imagecreatetruecolor() expects parameter 2 to be int, float given in /home/kissmeet/public_html/assets/sources/upload.php on line 372
+[05-May-2024 01:55:45 UTC] PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, null given in /home/kissmeet/public_html/assets/sources/upload.php on line 373
+[05-May-2024 01:55:45 UTC] PHP Warning:  imagejpeg() expects parameter 1 to be resource, null given in /home/kissmeet/public_html/assets/sources/upload.php on line 374

@@ -1,0 +1,221 @@
+<ion-modal-view>
+  <ion-header-bar style="background:#fff">
+    <button class="button button-clear comforta" ng-if="!loading" style="font-size:14px" ng-click="closeEditProfileModal()"><center><i class="icon"><svg viewBox="0 0 64 64" id="navigation-bar-close" width="100%" height="100%"><path d="M8.68 10.49l44.83 44.83a1.28 1.28 0 0 0 1.81-1.81L10.49 8.68a1.28 1.28 0 0 0-1.81 1.81z"></path><path d="M53.44 8.75l-44.7 44.7a1.28 1.28 0 0 0 1.82 1.8l44.7-44.7a1.28 1.28 0 0 0-1.82-1.8z"></path></svg></i></center></button>
+  </ion-header-bar>	
+  <ion-content class="profile">  
+    <div class="photos" >
+      <div class="row">
+        <div class="col col-66">
+            <div class="photo-pickable"  ng-if="uphotos[0] == null" >
+              <div class="w-full r-3x profileP" ng-click="pick()" style="height:200px;background-color:#f3f3f3;"></div>
+            </div>
+            <div class="photo-pickable" ng-if="uphotos[0] != null">
+              <div class="w-full r-3x profileP" ng-class="{grayScale: uphotos[0].approved == 0}" style="height:200px;position: relative;left: 96px;background-color:#f3f3f3;background-image:url({{trustPhoto(uphotos[0].photo)}})"></div>
+            </div>
+        </div>
+		
+   
+		
+      </div>
+      <div class="row">
+        <div class="col col-33">
+            <div class="photo-pickable" ng-if="uphotos[1] == null" ng-click="pick(4)">
+              <div class="w-full r-3x profileP"  id="photo4" style='height:100px;background-color:#f3f3f3;'></div>
+            </div>
+            <div class="photo-pickable" ng-if="uphotos[1] != null">
+              <div class="w-full r-3x profileP" ng-class="{grayScale: uphotos[1].approved == 0}" ng-click="showPhotoOptions(2,uphotos[1].id,uphotos[1].blocked,uphotos[1].profile,uphotos[1].approved)"  style="height:100px;background-color:#f3f3f3;background-image:url({{trustPhoto(uphotos[1].photo)}})"></div>
+            </div>
+        </div>
+		
+        <div class="col col-33">
+            <div class="photo-pickable" ng-if="uphotos[2] == null" ng-click="pick(5)" >
+              <div class="w-full r-3x profileP" id="photo5" style="height:100px;background-color:#f3f3f3;"></div>
+            </div>
+            <div class="photo-pickable" ng-if="uphotos[2] != null">
+              <div class="w-full r-3x profileP" ng-class="{grayScale: uphotos[2].approved == 0}" ng-click="showPhotoOptions(3,uphotos[2].id,uphotos[2].blocked,uphotos[2].profile,uphotos[2].approved)"  style="height:100px;background-color:#f3f3f3;background-image:url({{trustPhoto(uphotos[2].photo)}})"></div>
+            </div>
+        </div>
+		
+        <div class="col col-33">
+            <div class="photo-pickable" ng-if="uphotos[3] == null" ng-click="pick(6)" >
+              <div class="w-full r-3x profileP" id="photo6" style="height:100px;background-color:#f3f3f3;"></div>
+            </div>
+            <div class="photo-pickable"  ng-if="uphotos[3] != null">
+              <div class="w-full r-3x profileP" ng-class="{grayScale: uphotos[3].approved == 0}" ng-click="showPhotoOptions(4,uphotos[3].id,uphotos[3].blocked,uphotos[3].profile,uphotos[3].approved)"  style="height:100px;background-color:#f3f3f3;background-image:url({{trustPhoto(uphotos[3].photo)}})"></div>
+            </div>
+        </div>  		
+      </div>
+    </div>  
+    <div class="list m-n">
+     
+      <div class="item item-divider b-none text-u-c comforta" data-lid="135"></div>
+	 
+      <div class="item" >
+          
+<div class="testsvgg" style="
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 13px;
+    top: 10px;
+">
+              
+              <svg viewBox="-245.76 -245.76 1515.52 1515.52" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)"><rect x="-245.76" y="-245.76" width="1515.52" height="1515.52" rx="757.76" fill="#fff0f9" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="10.24"></g><g id="SVGRepo_iconCarrier"><path fill="#ff007f" d="M512 512a192 192 0 1 0 0-384 192 192 0 0 0 0 384zm0 64a256 256 0 1 1 0-512 256 256 0 0 1 0 512zm320 320v-96a96 96 0 0 0-96-96H288a96 96 0 0 0-96 96v96a32 32 0 1 1-64 0v-96a160 160 0 0 1 160-160h448a160 160 0 0 1 160 160v96a32 32 0 1 1-64 0z"></path></g></svg>
+          </div>
+          
+	<span data-lid="26" style="
+    position: absolute;
+    left: 58px;
+"></span>
+		<input style="font-size:16px;display:inline-table;border:none;background:none;float:right;text-align:right;" id="userName" value="{{name}}"/>
+      </div>
+	  
+      <div class="item" >
+          <div class="testsvgg" style="
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 13px;
+    top: 10px;
+">
+              
+    <svg fill="#ff007f" viewBox="-7.68 -7.68 47.36 47.36" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-7.68" y="-7.68" width="47.36" height="47.36" rx="23.68" fill="#ffeff9" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>birthday-cake</title> <path d="M28 14.25h-3.25v-3.25c0-0.414-0.336-0.75-0.75-0.75s-0.75 0.336-0.75 0.75v0 3.25h-6.5v-3.25c0-0.414-0.336-0.75-0.75-0.75s-0.75 0.336-0.75 0.75v0 3.25h-6.5v-3.25c0-0.414-0.336-0.75-0.75-0.75s-0.75 0.336-0.75 0.75v0 3.25h-3.25c-1.518 0.002-2.748 1.232-2.75 2.75v11c0.002 1.518 1.232 2.748 2.75 2.75h24c1.518-0.002 2.748-1.232 2.75-2.75v-11c-0.002-1.518-1.232-2.748-2.75-2.75h-0zM4 15.75h3.25v2.25c0 0.414 0.336 0.75 0.75 0.75s0.75-0.336 0.75-0.75v0-2.25h6.5v2.25c0 0.414 0.336 0.75 0.75 0.75s0.75-0.336 0.75-0.75v0-2.25h6.5v2.25c0 0.414 0.336 0.75 0.75 0.75s0.75-0.336 0.75-0.75v0-2.25h3.25c0.69 0.001 1.249 0.56 1.25 1.25v7.186l-2.719-2.719c-0.142-0.134-0.334-0.217-0.546-0.217-0.021 0-0.042 0.001-0.062 0.002l0.003-0c-0.231 0.023-0.429 0.148-0.549 0.329l-0.002 0.003c-1.664 2.514-3.309 3.809-4.824 3.66-2.324-0.188-3.852-3.52-3.866-3.553-0.121-0.262-0.382-0.441-0.685-0.441s-0.562 0.178-0.682 0.435l-0.002 0.005c-0.016 0.033-1.526 3.322-3.843 3.518-1.497 0.090-3.172-1.129-4.852-3.627-0.123-0.182-0.32-0.305-0.547-0.328l-0.003-0c-0.021-0.002-0.045-0.003-0.070-0.003-0.208 0-0.396 0.083-0.533 0.218l-2.72 2.72v-7.187c0.001-0.69 0.56-1.249 1.25-1.25h0zM28 29.25h-24c-0.69-0.001-1.249-0.56-1.25-1.25v-1.691l3.15-3.151c1.867 2.516 3.791 3.699 5.704 3.543 1.903-0.366 3.477-1.538 4.377-3.14l0.017-0.032c0.918 1.654 2.505 2.842 4.386 3.204l0.040 0.006c0.111 0.008 0.223 0.014 0.334 0.014 2.307-0.29 4.245-1.649 5.327-3.556l0.018-0.035 3.147 3.148v1.69c-0.001 0.69-0.56 1.249-1.25 1.25h-0zM7.991 8.75c1.693-0.040 3.073-1.333 3.249-2.985l0.001-0.015c0-1.132-1.883-3.35-2.692-4.251-0.138-0.153-0.336-0.249-0.558-0.249h-0.001c-0.222 0-0.421 0.097-0.558 0.25l-0.001 0.001c-0.804 0.9-2.673 3.118-2.673 4.249 0.172 1.663 1.544 2.956 3.228 3l0.004 0zM7.993 3.148c0.699 0.744 1.284 1.605 1.723 2.549l0.025 0.060c-0.173 0.833-0.883 1.456-1.746 1.493l-0.004 0c-0.86-0.040-1.565-0.661-1.73-1.478l-0.002-0.012c0.457-1.005 1.039-1.867 1.739-2.617l-0.005 0.006zM15.991 8.75c1.693-0.040 3.072-1.333 3.248-2.985l0.001-0.015c0-1.132-1.882-3.35-2.691-4.251-0.138-0.153-0.336-0.249-0.558-0.249h-0.001c-0.222 0-0.421 0.097-0.558 0.25l-0.001 0.001c-0.804 0.9-2.673 3.118-2.673 4.249 0.172 1.663 1.544 2.956 3.228 3l0.004 0zM15.993 3.148c0.699 0.744 1.284 1.605 1.722 2.549l0.025 0.060c-0.135 0.851-0.863 1.493-1.741 1.493-0.877 0-1.604-0.641-1.739-1.48l-0.001-0.010c0.457-1.005 1.039-1.867 1.739-2.617l-0.005 0.006zM23.99 8.75c1.694-0.040 3.073-1.333 3.249-2.985l0.001-0.015c0-1.132-1.883-3.35-2.691-4.251-0.138-0.153-0.337-0.249-0.559-0.249h-0.002c-0.222 0.001-0.421 0.097-0.558 0.25l-0.001 0.001c-0.803 0.901-2.67 3.118-2.67 4.249 0.171 1.663 1.543 2.955 3.226 3l0.004 0zM23.992 3.149c0.699 0.744 1.285 1.605 1.723 2.548l0.025 0.060c-0.134 0.851-0.862 1.493-1.74 1.493-0.877 0-1.604-0.641-1.739-1.48l-0.001-0.010c0.456-1.004 1.037-1.867 1.737-2.616l-0.005 0.005z"></path> </g></svg>
+          </div>
+	    <span data-lid="300" style="
+    position: absolute;
+    left: 58px;
+"></span>
+		<input style="margin:0;padding:0;font-size:16px;display:inline-table;border:none;background:none;float:right;text-align:right;"  id="userAge" value="{{age}}"/>
+      </div>
+
+ 
+  
+
+      <div class="list m-n " ng-repeat="q in questions"  ng-click="updateUserQuestion(q,q.answers)" ng-if="q.method == 'text'">
+          <div class="item item-divider b-none"></div>
+          <div class="item item-divider b-none text-u-c comforta">{{q.question}}</div>         
+          <div class="item">
+            <textarea style="width:100%;font-size:16px;line-height: 22px">{{q.userAnswer}}</textarea>
+          </div>
+        </div>                       
+ 
+	
+    <div class="list m-n">
+    
+      <div class="item">
+        <textarea id="userBio" ng-bind-html="unEntity(bio) | nl2br" style="width:100%;font-size:16px;line-height: 22px;height:90px"></textarea>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="list m-n">
+ 
+      <div class="item item-divider b-none text-u-c comforta">{{alang[98].text}}</div>  
+      <div class="item comforta"  ng-click="logout()">
+   
+         <div class="item" >
+<div class="testsvgg" style="
+    width: 32px;
+    height: 31px;
+    position: absolute;
+    left: 7px;
+    top: 10px;
+">
+              
+  <svg fill="#fe007f" viewBox="-9.6 -9.6 115.20 115.20" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-9.6" y="-9.6" width="115.20" height="115.20" rx="57.6" fill="#fff0f9" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Privacy"> <path d="M72.61,21.28l-24.5-5.77h-.22l-24.5,5.77a.49.49,0,0,0-.39.48V48A29.33,29.33,0,0,0,38.06,73.66l9.67,6.17a.45.45,0,0,0,.27.08.53.53,0,0,0,.24-.06l10.95-5.94,0,0A29.15,29.15,0,0,0,73,49V21.76A.49.49,0,0,0,72.61,21.28ZM72,49A28.18,28.18,0,0,1,58.7,73L48,78.83l-9.45-6A28.33,28.33,0,0,1,24,48V22.16l24-5.65,24,5.65Z"></path> <path d="M27.17,46.9a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.51.51,0,0,0-.5.5v2A.5.5,0,0,0,27.17,46.9Z"></path> <path d="M27.17,42.9a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.51.51,0,0,0-.5.5v2A.5.5,0,0,0,27.17,42.9Z"></path> <path d="M27.17,38.9a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.51.51,0,0,0-.5.5v2A.5.5,0,0,0,27.17,38.9Z"></path> <path d="M27.34,50.9a.5.5,0,0,0,.45-.55c-.06-.65-.1-1.3-.11-2a.49.49,0,0,0-.51-.5.5.5,0,0,0-.49.51q0,1,.12,2a.49.49,0,0,0,.49.45Z"></path> <path d="M67.27,57.44a.5.5,0,0,0-.65.28c-.24.6-.51,1.2-.8,1.78a.5.5,0,0,0,.22.67.49.49,0,0,0,.23.06.48.48,0,0,0,.44-.28q.47-.91.84-1.86A.51.51,0,0,0,67.27,57.44Z"></path> <path d="M42,22.66h.12l1.94-.46a.5.5,0,1,0-.23-1l-1.94.46a.5.5,0,0,0,.11,1Z"></path> <path d="M28.49,54.2c-.17-.63-.31-1.27-.43-1.91a.5.5,0,0,0-1,.18c.12.66.27,1.33.45,2a.49.49,0,0,0,.48.37l.13,0A.5.5,0,0,0,28.49,54.2Z"></path> <path d="M29.81,57.88c-.27-.59-.52-1.2-.74-1.81a.49.49,0,0,0-.63-.3.51.51,0,0,0-.31.64c.23.63.49,1.27.77,1.89a.49.49,0,0,0,.45.29.41.41,0,0,0,.21-.05A.5.5,0,0,0,29.81,57.88Z"></path> <path d="M27.17,34.9a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.51.51,0,0,0-.5.5v2A.5.5,0,0,0,27.17,34.9Z"></path> <path d="M34.23,24.5l.12,0L36.3,24a.5.5,0,0,0,.37-.6.5.5,0,0,0-.6-.37l-2,.46a.49.49,0,0,0-.37.6A.5.5,0,0,0,34.23,24.5Z"></path> <path d="M38.13,23.58h.11l1.95-.46a.5.5,0,0,0,.37-.6.5.5,0,0,0-.6-.38l-2,.46a.5.5,0,0,0,.12,1Z"></path> <path d="M68.83,28.62a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,68.83,28.62Z"></path> <path d="M30.34,25.41h.12l1.94-.46a.5.5,0,1,0-.23-1l-1.94.45a.52.52,0,0,0-.38.61A.5.5,0,0,0,30.34,25.41Z"></path> <path d="M27.17,30.9a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.51.51,0,0,0-.5.5v2A.5.5,0,0,0,27.17,30.9Z"></path> <path d="M27.17,26.9a.5.5,0,0,0,.5-.5v-.35l.84-.19a.51.51,0,0,0,.37-.61.5.5,0,0,0-.6-.37l-1.22.29a.49.49,0,0,0-.39.49v.74A.5.5,0,0,0,27.17,26.9Z"></path> <path d="M57.48,23.5l2,.46h.11a.5.5,0,0,0,.12-1l-1.95-.46a.49.49,0,0,0-.6.37A.5.5,0,0,0,57.48,23.5Z"></path> <path d="M61.37,24.42l2,.46h.12a.5.5,0,0,0,.48-.39.49.49,0,0,0-.37-.6l-1.95-.46a.51.51,0,0,0-.6.38A.51.51,0,0,0,61.37,24.42Z"></path> <path d="M65.27,25.33l2,.46h.11a.5.5,0,0,0,.11-1l-1.94-.46a.5.5,0,0,0-.23,1Z"></path> <path d="M53.59,22.58l1.94.46.12,0a.51.51,0,0,0,.49-.39.5.5,0,0,0-.38-.6l-1.94-.46a.5.5,0,0,0-.23,1Z"></path> <path d="M49.69,21.67l2,.46h.12a.5.5,0,0,0,.11-1l-1.95-.45a.49.49,0,0,0-.6.37A.5.5,0,0,0,49.69,21.67Z"></path> <path d="M47.75,20.3l-2,.46a.5.5,0,0,0,.11,1l.12,0L48,21.27a.5.5,0,1,0-.23-1Z"></path> <path d="M68.54,52.61h.06a.5.5,0,0,0,.5-.43c.09-.67.15-1.36.19-2a.51.51,0,0,0-.47-.53.49.49,0,0,0-.53.47c0,.65-.09,1.31-.18,2A.5.5,0,0,0,68.54,52.61Z"></path> <path d="M68.83,40.62a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,68.83,40.62Z"></path> <path d="M68.83,44.62a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,68.83,44.62Z"></path> <path d="M68.83,36.62a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,68.83,36.62Z"></path> <path d="M67.27,55.87a.5.5,0,0,0,.33.62.39.39,0,0,0,.15,0,.5.5,0,0,0,.48-.35c.19-.65.37-1.31.51-2a.5.5,0,1,0-1-.22C67.63,54.61,67.46,55.25,67.27,55.87Z"></path> <path d="M68.83,48.62a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,68.83,48.62Z"></path> <path d="M68.83,32.62a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,68.83,32.62Z"></path> <path d="M37,40.5a11.53,11.53,0,0,0,7.6,10.81,20.08,20.08,0,0,0-13.49,9c-.14-.23-.29-.46-.42-.7a.5.5,0,0,0-.88.49c.27.49.57,1,.88,1.43h0c.07.1.12.2.19.3l.06.06c.34.51.7,1,1.08,1.48a.39.39,0,0,0,.06.11c.1.14.23.26.34.4s.25.29.37.43.4.49.62.72l.05,0c.43.47.89.91,1.35,1.34l0,.06c.15.14.32.27.48.41s.48.41.73.6.23.21.35.3l0,0c.52.4,1.05.78,1.6,1.14,0,0,0,0,0,0l.06,0c.45.28.9.55,1.36.81l3.3,2.11.36.23h0l4.56,2.91a.5.5,0,0,0,.51,0l2.25-1.23h0l1.75-1h0L54,72h0l1.76-1h0l1.76-1h0c.43-.27.85-.56,1.26-.85,0,0,0,0,0,0l.26-.2c.37-.27.72-.54,1.07-.83l.28-.22,0-.06c.48-.41,1-.84,1.4-1.28l.06,0c.17-.17.32-.35.49-.53s.43-.45.63-.68.18-.19.26-.29a.56.56,0,0,0,0-.08c.4-.48.79-1,1.15-1.47,0,0,0,0,.06-.05s.1-.16.16-.24c.28-.4.55-.81.81-1.22h0l.15-.23a.49.49,0,0,0-.17-.69A.48.48,0,0,0,65.3,61a20,20,0,0,0-13.22-9.57A11.5,11.5,0,1,0,37,40.5ZM64.57,61.69l-.39.58a23.82,23.82,0,0,1-1.89,2.45l-.64.69a23.87,23.87,0,0,1-2.08,1.94c-.36.3-.74.59-1.12.87s-.91.65-1.38.94l-4.59,2.49L51.8,72h0l-3.78,2-.93-.6h0L45.4,72.4h0l-1.68-1.07h0L42,70.25h0l-1.68-1.07h0L40,69q-.66-.37-1.29-.78a20.5,20.5,0,0,1-2-1.45L36,66.18a25.88,25.88,0,0,1-2.41-2.39l-.35-.41a25.19,25.19,0,0,1-1.58-2.11,19,19,0,0,1,32.87.42ZM48.5,30A10.5,10.5,0,1,1,38,40.5,10.51,10.51,0,0,1,48.5,30Z"></path> </g> </g></svg>
+          </div>
+   
+   
+    <span class="ng-binding" style="
+    margin-left: 23px;
+">  {{alang[100].text}} </span> 
+
+
+
+        <span class="item-note">
+          <i class="icon ion-chevron-right"></i>
+        </span>
+      </div>
+
+      <div class="item comforta"  ng-click="openTerms()">
+      <span style="
+    margin-left: 23px;
+" > {{alang[101].text}} </span>  
+
+<div class="testsvgg" style="
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 4px;
+    top: 7px;
+">
+              
+<svg fill="#fe017f" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-83.44 -83.44 464.88 464.88" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-83.44" y="-83.44" width="464.88" height="464.88" rx="232.44" fill="#fff0f9" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <rect x="66.5" y="67" width="98" height="16"></rect> <polygon points="200.574,70.429 191.993,61.31 180.341,72.274 201.32,94.571 231.189,58.611 218.881,48.389 "></polygon> <rect x="66.5" y="117" width="98" height="16"></rect> <polygon points="200.574,120.429 191.993,111.31 180.341,122.274 201.32,144.571 231.189,108.611 218.881,98.389 "></polygon> <rect x="66.5" y="167" width="98" height="16"></rect> <polygon points="200.574,170.429 191.993,161.31 180.341,172.274 201.32,194.571 231.189,158.611 218.881,148.389 "></polygon> <rect x="66.5" y="217" width="98" height="16"></rect> <polygon points="200.574,220.429 191.993,211.31 180.341,222.274 201.32,244.571 231.189,208.611 218.881,198.389 "></polygon> <path d="M264.5,23c0-12.703-10.297-23-23-23h-185c-12.703,0-23,10.297-23,23v252c0,12.703,10.297,23,23,23h185 c12.703,0,23-10.297,23-23V23z M248.5,275c0,3.866-3.134,7-7,7h-185c-3.866,0-7-3.134-7-7V23c0-3.866,3.134-7,7-7h185 c3.866,0,7,3.134,7,7V275z"></path> </g> </g></svg>
+          </div>
+
+        <span class="item-note">
+          <i class="icon ion-chevron-right"></i>
+        </span>
+      </div>
+
+      <div class="item comforta"  ng-click="logout()" style="background:none;border:none">
+      <span class="ng-binding" style="
+    position: absolute;
+    top: 12px;
+    left: 46px;
+"> {{alang[42].text}} </span> 
+        
+         <div class="testsvgg" style="
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 4px;
+    top: 0px;
+">
+              
+<svg viewBox="-100 -100 1200.00 1200.00" data-name="Layer 2" id="Layer_2" xmlns="http://www.w3.org/2000/svg" fill="#ff007f"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-100" y="-100" width="1200.00" height="1200.00" rx="600" fill="#fff1f9" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke:#ff007f;stroke-linecap:round;stroke-miterlimit:10;stroke-width:91;}.cls-2{fill:#ff007f;}</style></defs><path class="cls-1" d="M591.61,280.48C693.9,317.86,766.91,416,766.91,531.26c0,147.41-119.5,266.91-266.91,266.91S233.09,678.67,233.09,531.26c0-115.22,73-213.4,175.3-250.78"></path><rect class="cls-2" height="160.61" rx="35.92" width="71.84" x="464.08" y="201.83"></rect></g></svg>
+          </div>
+          
+          
+        <span class="item-note">
+          <i class="icon ion-chevron-right"></i>
+        </span>
+      </div>      
+      <div class="item comforta"  ng-click="deleteProfile()" style="background:none;border:none;color: #dc3545">
+       <span class="ng-binding" style="
+    position: absolute;
+    top: 12px;
+    left: 46px;
+"> {{alang[274].text}}</span> 
+        
+        <div class="testsvgg" style="
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 4px;
+    top: 0px;
+">
+              
+<svg viewBox="-5.28 -5.28 34.56 34.56" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-5.28" y="-5.28" width="34.56" height="34.56" rx="17.28" fill="#fff0f9" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M17 6.5C17 9.53757 14.7614 12 12 12C9.23858 12 7 9.53757 7 6.5C7 3.46243 9.23858 1 12 1C14.7614 1 17 3.46243 17 6.5ZM9 6.5C9 8.32254 10.3431 9.8 12 9.8C13.6569 9.8 15 8.32254 15 6.5C15 4.67746 13.6569 3.2 12 3.2C10.3431 3.2 9 4.67746 9 6.5Z" fill="#ff007f"></path> <path d="M11.6759 14.9952C10.7868 14.9679 10.1945 14.8277 9.72609 14.6447C9.26355 14.464 8.89822 14.237 8.41685 13.9378C8.32296 13.8795 8.22448 13.8183 8.12019 13.7543C7.07587 13.1132 5.73464 13.2622 4.86415 14.1419C4.48443 14.5256 4.04036 15.0219 3.6849 15.5626C3.34603 16.0781 3 16.7638 3 17.5V20.0003C3 21.6574 4.34334 23 6 23H13.101C12.5151 22.4259 12.0297 21.7496 11.6736 21H6C5.44752 21 5 20.5524 5 20.0003V17.5C5 17.3549 5.08549 17.073 5.35613 16.6613C5.61017 16.2748 5.95358 15.8844 6.28579 15.5487C6.49412 15.3381 6.81106 15.2974 7.07389 15.4588C7.15661 15.5095 7.24087 15.5621 7.32694 15.6159C7.80938 15.9171 8.34918 16.254 8.99836 16.5076C9.58761 16.7378 10.2519 16.8974 11.0761 16.9645C11.1791 16.2695 11.3843 15.6078 11.6759 14.9952Z" fill="#ff007f"></path> <path d="M16 17C15.4477 17 15 17.4477 15 18C15 18.5523 15.4477 19 16 19H20C20.5523 19 21 18.5523 21 18C21 17.4477 20.5523 17 20 17H16Z" fill="#ff007f"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M18 24C21.3137 24 24 21.3137 24 18C24 14.6863 21.3137 12 18 12C14.6863 12 12 14.6863 12 18C12 21.3137 14.6863 24 18 24ZM18 22.0181C15.7809 22.0181 13.9819 20.2191 13.9819 18C13.9819 15.7809 15.7809 13.9819 18 13.9819C20.2191 13.9819 22.0181 15.7809 22.0181 18C22.0181 20.2191 20.2191 22.0181 18 22.0181Z" fill="#ff007f"></path> </g></svg>
+          </div>
+        
+        
+        <span class="item-note">
+          <i class="icon ion-chevron-right"></i>
+        </span>
+      </div> 
+             
+
+    </div>
+
+  <div flow-init
+       flow-name="uploader.flow"
+       flow-files-added="processUserFiles($files)">
+    <button flow-btn type="file" id="uploadUserPhoto" style="display: none;">Upload Images</button>
+   </div> 
+ <div class="item item-divider b-none" style="background:#fff"></div>
+  </ion-content>
+</ion-modal-view>

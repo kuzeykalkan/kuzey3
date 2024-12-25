@@ -1,0 +1,311 @@
+
+ 
+
+
+<style>
+    .header_logo p img {
+  margin-right: 5px; /* Add space to the right of the image */
+}
+    
+    
+</style>
+       
+       
+              
+<div class="header_logo" style ="background: #fff;" >
+ <img src="https://kissmeet.online/logokissmet3.png" style="
+height: 45px;
+    width: 105px;
+    z-index: 5;
+    position: absolute;
+    margin-top: 14px;
+    margin-left: 24px;
+">
+  <p>
+ <img src="https://kissmeet.online/kalpdating.png" style=" z-index: 5; position: absolute; margin-top: 22px; vertical-align: middle; float: left; margin-left: 307px;" width="25" height="25">
+   
+  </p>
+  <p>
+<img src="https://kissmeet.online/ayardating.png" style=" z-index: 5; position: absolute; margin-top: 22px; vertical-align: middle; float: left; margin-left: 342px;" width="25" height="25">
+  </p>
+ </div>
+       
+        <div class="spotlight" style="
+    position: absolute;
+    top: 64px;
+">
+        <div class="spotlight_">
+            <div class="spotlight__action js-touchable js-spotlight-action">
+                <div class="spotlight__item js-spotlight-add-action js-spotlight-add-after-this">
+                    <div class="brick brick--squared brick--stretch " ng-click="openSpot()" >
+                        <div class="brick__image" style="background-image: url('{{me.profile_photo}}')"></div>
+                        <div class="brick__badge brick__badge--br">
+                            <div class="icon icon--md  icon--shadow gradient18" >
+                                <svg class="icon__content icon__content--inactive">
+<svg viewBox="0 0 64 64" id="icon-circle-plus-red-tomato" width="100%" height="100%"><circle cx="32" cy="32" r="32" fill="#FF661B"></circle><path fill="#FFF" d="M33.6 30.4V19.2h-3.2v11.2H19.2v3.2h11.2v11.2h3.2V33.6h11.2v-3.2z"></path></svg>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spotlight__content" ng-repeat="p in spotlight track by $index" style="margin-left: 5px;" >
+                <div class="spotlight__users js-spotlight-users" ng-click="openProfileModal({{p.id}},'{{p.name}}','{{p.photo}}',{{p.age}},'{{p.city}}',{{p.status}})">
+                    <div class="spotlight__item js-item">
+                        <div class="brick brick--squared brick--stretch vivify popInRight delay-{{$index * 100}}" >
+                            <div class="brick__image " style="background-image: url('{{trustPhoto(p.spotPhoto)}}')"></div>
+                            <div class="csms-online-status csms-online-status--online" ng-if="p.status == 1" style="position: absolute;z-index: 9;right: 5px;bottom: 5px;"></div>
+                        </div>
+                    </div>                            
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+<div class="page mutual-attraction visible vivify fadeIn" style="z-index: 99;background: #fff" ng-if="itsaMatch">
+    <div class="page-promo-match">
+        <div class="promo-match">
+            <div class="cta-box__media">
+                <div class="promo-match-photos">
+                    <div class="promo-match-photos__image promo-match-photos__image--left" style="background-image: url({{cu3.photo}})"></div>
+                    <div class="promo-match-photos__image promo-match-photos__image--right" style="background-image: url({{me.profile_photo}})"></div>
+                    <div class="promo-match-photos__icon vivify popIn delay-350" style="margin-left: -40px;top: 35px">
+                        <div class="icon icon--stretch">
+                            <svg class="icon__content">
+<svg viewBox="0 0 64 64" id="icon-floating-like" width="100%" height="100%"><circle cx="32" cy="32" r="32" fill="#FF661B"></circle><path d="M38.41 22.4c4.4 0 7.99 3.54 7.99 7.9 0 7.14-9.64 16.1-14.4 16.1s-14.4-8.96-14.4-16.1c0-4.36 3.58-7.9 7.99-7.9a8.04 8.04 0 0 1 5.35 2.04A7.93 7.93 0 0 1 32 25.58a7.93 7.93 0 0 1 1.35-1.4 8.04 8.04 0 0 1 5.06-1.79z" fill="#FFF" fill-rule="nonzero"></path></svg>                                
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            <div class="cta-box animated fadeInUp">
+                <div class="cta-box__header qa-title">{{alang[142].text}}</div>
+                <div class="cta-box__content qa-message js-message">
+                    <b>{{alang[143].text}} {{cu3.name}}</b> {{alang[144].text}}<br>
+                    {{alang[160].text}}
+                </div>
+            </div>
+            <div class="promo-match__buttons animated fadeIn">
+                <div class="promo-match__button" ng-click="closeMatchModal();">
+                    <div class="promo-match-button promo-match-button--sm"  >
+                        <div class="promo-match-button__icon"><i class="icon-svg promo-match-button__icon_">
+                            <img src="img/goBack.png" style="width: 30px;">
+                        </i>
+                    </div>
+                        <div class="promo-match-button__label">{{alang[146].text}}</div>
+                    </div>
+                </div>
+                <div class="promo-match__button">
+                    <div class="promo-match-button promo-match-button--chat" ng-click="goToChatGlobal('home.messaging','left',cu3)">
+                        <div class="promo-match-button__icon">
+                            <i class="icon-svg promo-match-button__icon_">
+                                <img src="img/goChat.png" style="width: 60px;">
+                            </i>
+                        </div>
+                        <div class="promo-match-button__label">{{alang[145].text}}</div>
+                    </div>
+                </div>
+                <div class="promo-match__button">
+                    <div class="promo-match-button promo-match-button--sm" ng-click="goToChatGlobal('home.messaging','left',cu3,'Gift')">
+                        <div class="promo-match-button__icon">
+                            <i class="icon-svg promo-match-button__icon_">
+                                <svg class="icon-svg_">
+                                    <img src="img/icon-circle-smiley.png" style="width: 30px;">
+                                </svg>
+                            </i>
+                        </div>
+                        <div class="promo-match-button__label">{{alang[161].text}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ion-content style="background:#fff;margin-top: -45px;" scroll="true" class="vivify fadeIn" >
+
+
+<div class="page-container" >
+
+    <div class="page encounters visible" >
+
+        <div class="profile-parent-view" >
+
+            <div class="encounters__card" style="height: {{h}}px;text-align: center;margin-top: 100px" ng-if="!exploreResult" >
+                <div class="encounters-message">
+                    
+                    <div class="brick  brick--xxlg vivify" style="width: 200px;height: 200px;margin-bottom: 25px;">
+                        <div class="brick-img profile-photo box-shadow-credits" 
+                        style="background-image: url('{{noResultImage}}');height: 100%;border-radius:65px"></div>
+                    </div>
+                    <h1 class="comforta" style="font-size:24px;color:#14171b">{{alang[162].text}}</h1>
+                    <span style="color:#14171b">{{alang[163].text}}.<br>
+                    {{alang[164].text}}?</span>
+                    <button class="button btn-primary" style="margin-top: 25px;z-index: 99" ng-click="goTo('home.settings','left');">
+                        <div class="button__content"><span class="button__text comforta">{{alang[165].text}}</span></div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="encounters__card" ng-click="getRegisterReward()" style="height: {{h+200}}px;text-align: center;padding-top: 50px;position:fixed;top:0;left:0;width:100%;z-index: 99;background: rgba(0,0,0,0.6)!important;" ng-if="registerReward">
+                <div class="encounters-message" style="padding-top: 310px;padding-right: 25px;padding-left: 25px">
+                    <div class='coin'  style="z-index: 9;top: -225px;">
+                      <div class='front jump' id="coinJump">
+                        <div class='star'></div>
+                        <span class='creditsAmount'>{{creditsRewardRegister}}</span>
+                        <div class='shapes'>
+                          <div class='shape_l'></div>
+                          <div class='shape_r'></div>
+                          <span class='top'></span>
+                          <span class='bottom'>{{site_name}}</span>
+                        </div>
+                      </div>
+                    </div>  
+                    <span class="comforta" style="color:#fff;font-size: 18px">   {{lang[519].text}} {{site_name}}, 
+                    {{lang[520].text}}  <strong>{{creditsRewardRegister}}</strong> {{lang[73].text}}</span>                    
+                    </div>
+                </div>
+
+            </div>            
+
+
+
+<div class="profiles-wrapper" style="padding-bottom: 50px;" ng-show="exploreResult" >
+<div class="encounters__card" style="height: {{h}}px;">
+<div class="profile-action vivify popInLeft box-shadow-credits" id="likeBtn" ng-if="!loading"
+style="position: absolute;right: 4px;top: 98%;z-index: 9999;border-radius: 50%;"  ng-click="like();" >
+  <i class="icon-svg icon-svg--stretch">
+<svg  width="50px" height="50px" viewBox="-5.28 -5.28 34.56 34.56" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-5.28" y="-5.28" width="34.56" height="34.56" rx="17.28" fill="#5e053c" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8.10627 18.2468C5.29819 16.0833 2 13.5422 2 9.1371C2 4.27416 7.50016 0.825464 12 5.50063L14 7.49928C14.2929 7.79212 14.7678 7.79203 15.0607 7.49908C15.3535 7.20614 15.3534 6.73127 15.0605 6.43843L13.1285 4.50712C17.3685 1.40309 22 4.67465 22 9.1371C22 13.5422 18.7018 16.0833 15.8937 18.2468C15.6019 18.4717 15.3153 18.6925 15.0383 18.9109C14 19.7294 13 20.5 12 20.5C11 20.5 10 19.7294 8.96173 18.9109C8.68471 18.6925 8.39814 18.4717 8.10627 18.2468Z" fill="#ffffff"></path> </g></svg>
+  </i>
+</div>
+  <div class="profile-action vivify popInRight box-shadow-credits" id="nolikeBtn" ng-if="!loading"
+ style="position: absolute;left: 27px;top: 98%;z-index: 9999;border-radius: 50%;" ng-click="nolike();" >
+      <i class="icon-svg icon-svg--stretch">
+  
+<svg  width="50px" height="50px" fill="#ffffff" viewBox="-10.56 -10.56 53.12 53.12" enable-background="new 0 0 32 32" id="Glyph" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-10.56" y="-10.56" width="53.12" height="53.12" rx="26.56" fill="#5e053c" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3.7,8.256C3.774,8.164,3.915,8.157,3.998,8.24l16.589,16.589c0.082,0.082,0.079,0.215-0.006,0.293 l-3.902,3.612C16.487,28.911,16.244,29,16,29s-0.487-0.089-0.68-0.266l-10.77-9.968C2.906,17.243,2,15.213,2,13.048 C2,11.295,2.601,9.634,3.7,8.256z" id="XMLID_338_"></path><path d="M29.707,28.293c0.391,0.391,0.391,1.023,0,1.414c-0.391,0.391-1.023,0.391-1.414,0l-26-26 c-0.391-0.391-0.391-1.023,0-1.414s1.023-0.391,1.414,0L7.13,5.716c2.884-1.188,6.327-0.851,8.87,1.049 c3.365-2.516,8.323-2.328,11.449,0.565C29.094,8.853,30,10.884,30,13.048s-0.906,4.195-2.551,5.717l-3.775,3.494L29.707,28.293z" id="XMLID_340_"></path></g></svg>
+     
+      </i>
+    </div>  
+    
+      <div class="profile-action vivify popInRight box-shadow-credits" id="nolikeBtn" ng-if="!loading"
+style="position:absolute;left: 113px;top: 98%;z-index: 9999;border-radius: 50%" ng-click="goToChatGlobal('home.messaging','left',cards[0])" >
+      <i class="icon-svg icon-svg--stretch">
+
+
+<svg  width="50px" height="50px" viewBox="-6 -6 36.00 36.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-6" y="-6" width="36.00" height="36.00" rx="18" fill="#5e053c" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8 11H8.01M12 11H12.01M16 11H16.01M21 20L17.6757 18.3378C17.4237 18.2118 17.2977 18.1488 17.1656 18.1044C17.0484 18.065 16.9277 18.0365 16.8052 18.0193C16.6672 18 16.5263 18 16.2446 18H6.2C5.07989 18 4.51984 18 4.09202 17.782C3.71569 17.5903 3.40973 17.2843 3.21799 16.908C3 16.4802 3 15.9201 3 14.8V7.2C3 6.07989 3 5.51984 3.21799 5.09202C3.40973 4.71569 3.71569 4.40973 4.09202 4.21799C4.51984 4 5.0799 4 6.2 4H17.8C18.9201 4 19.4802 4 19.908 4.21799C20.2843 4.40973 20.5903 4.71569 20.782 5.09202C21 5.51984 21 6.0799 21 7.2V20Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+   
+   
+      </i>
+    </div>  
+    
+    
+    
+    
+    <div class="encounters-card" id="discoverGame" style="border-radius: 17px">
+        <div class="encounters-card__photos" id="discoverPhotos" style="border:1px solid #eee;"  ng-click="openProfileExplore(cards[0])">
+            <div class="slider-gallery">
+                <div class="loader small grey centered " ng-if="loading">                 
+                    <div class="first dot"></div>
+                    <div class="second dot"></div>
+                    <div class="third dot"></div>
+
+                </div>  
+                             
+                <div class="slider-gallery__pages" style="transform: translate3d(0px, 0px, 0px);">
+                    <div class="slider-gallery__page is-active">
+                        <div class="multimedia" ng-show="!loading">
+                            <div class="multimedia__image profilePhoto" style="background-image: url({{cards[0].discoverPhoto}});"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="encounters-card__floating" id="discoverNameContainer" ng-show="!loading" >
+            <div class="encounters-card__info box-shadow-credits"  ng-click="openProfileExplore(cards[0])">
+                <div class="encounters-card__name">                
+                    <div class="profile-user-info">
+                        <div class="profile-user-info__text"><span class="profile-user-info__name comforta" style="font-weight: 700">{{cards[0].full.name}}</span></div>
+                        <div class="profile-user-info__meta comforta"><span class="profile-user-info__age">,&nbsp;{{cards[0].full.age}}</span></div>
+                        <div class="profile-user-info__status"><div class="csms-online-status csms-online-status--online" ng-if="cards[0].status == 1" style="margin-left: 5px"></div></div>                        
+                    </div>
+                </div>
+                <div class="encounters-card__announce">
+                    <div>{{cards[0].full.city}}</div>
+                </div>
+            </div> 
+                <div class="profile-action-chat js-touchable vivify popIn" ng-if="!loading && showGoToChat" ng-click="goToChatGlobal('home.messaging','left',cards[0])">
+<svg viewBox="0 0 64 64" id="icon-floating-chat" width="50px" height="50px" style="position: absolute;left: -10px;top:-11px"><circle fill="rgba(255,255,255,0)" cx="32" cy="32" r="32"></circle><path d="M45 45c-1.5 0-4.59-.26-7.6-1.17A12.95 12.95 0 0 1 32 45a13 13 0 1 1 10.2-4.93A9.22 9.22 0 0 0 45 45zM27 33.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" fill="#1AB0FF" fill-rule="nonzero"></path></svg>
+                </div>                                               
+        </div>
+
+        <div class="encounters-card__floating" id="discoverAdContainer" ng-show="!loading" ng-if="showMobileAd" style="background: none;height: 7px;">
+            <div class="encounters-card__info" style="background: none">
+            </div>                                                
+        </div>        
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+  
+
+</ion-content>
+<!--- BOTTOM MENU -->
+<div class="tabbar">
+    <div class="tabbar__items">
+        <div class="tabbar__item">
+            <div class="tabbar-item" ng-click="goTo('home.meet');">
+                <div class="tabbar-item__icon">
+                    <div class="icon icon--stretch" >
+                        <svg class="icon__content icon__content--inactive">
+                     <svg fill="#000000" height="28px" width="28px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M437.018,74.981C388.667,26.63,324.379,0.001,256,0.001c-68.381,0-132.668,26.629-181.02,74.981 C26.629,123.333,0,187.62,0,256s26.629,132.667,74.981,181.019c48.352,48.352,112.639,74.981,181.02,74.981 c68.38,0,132.668-26.629,181.019-74.981C485.372,388.667,512,324.38,512,256S485.371,123.333,437.018,74.981z M86.295,86.295 c29.377-29.376,65.031-50.186,103.933-61.205c-15.595,12.69-29.9,30.009-42.327,51.55 c-26.707,46.292-41.845,107.129-42.91,172.006H16.122C17.957,187.296,42.702,129.886,86.295,86.295z M86.295,425.706 c-43.342-43.342-68.049-100.346-70.133-161.3h88.851c1.211,64.483,16.326,124.913,42.888,170.955 c12.427,21.541,26.732,38.86,42.327,51.55C151.325,475.891,115.67,455.082,86.295,425.706z M247.594,264.405v231.112 c-32.126-3.557-62.34-27.429-85.835-68.154c-25.192-43.667-39.546-101.26-40.744-162.96h126.579V264.405z M247.594,248.645 H120.993c1.054-62.096,15.431-120.096,40.766-164.01c23.495-40.724,53.709-64.596,85.835-68.153V248.645z M425.706,86.295 c43.591,43.591,68.338,101.002,70.172,162.35h-88.867c-1.065-64.877-16.203-125.713-42.91-172.006 c-12.427-21.541-26.733-38.86-42.327-51.55C360.674,36.109,396.33,56.919,425.706,86.295z M263.354,248.645V16.369 c32.518,3.147,63.135,27.099,86.886,68.267c25.335,43.915,39.712,101.914,40.766,164.01H263.354V248.645z M263.354,495.632 V264.405h127.631c-1.198,61.698-15.552,119.293-40.744,162.96C326.489,468.533,295.872,492.485,263.354,495.632z M425.706,425.706 c-29.376,29.376-65.031,50.186-103.933,61.205c15.595-12.689,29.9-30.008,42.327-51.55 c26.563-46.042,41.678-106.473,42.888-170.955h88.851C493.754,325.36,469.048,382.364,425.706,425.706z"></path> </g> </g> </g></svg>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabbar__item">
+            <div class="tabbar-item is-active"  ng-click="goTo('home.explore');">
+                <div class="tabbar-item__icon">
+                    <div class="icon icon--stretch" >
+                        <svg class="icon__content icon__content--inactive">
+<svg fill="#000000" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>hand-holding-heart</title> <path d="M29.064 19.701c-0.421-0.177-0.91-0.28-1.423-0.28-0.577 0-1.123 0.13-1.611 0.362l0.023-0.010-5.778 2.595c0.003-0.047 0.026-0.087 0.026-0.134-0.015-1.371-1.129-2.476-2.502-2.476-0.069 0-0.137 0.003-0.204 0.008l0.009-0.001h-3.783l-4.76-1.395c-0.062-0.020-0.133-0.031-0.207-0.031-0.001 0-0.003 0-0.004 0h-2.169v-0.757c-0-0.414-0.336-0.75-0.75-0.75h-3.883c-0.414 0-0.75 0.336-0.75 0.75v0 12.208c0 0.414 0.336 0.75 0.75 0.75h3.883c0.414-0 0.75-0.336 0.75-0.75v0-1.005c1.818 0.284 3.445 0.742 4.987 1.367l-0.149-0.054c1.15 0.416 2.478 0.656 3.862 0.656 0.007 0 0.014 0 0.021-0h-0.001c0.005 0 0.011 0 0.017 0 1.604 0 3.133-0.319 4.528-0.898l-0.078 0.029c1.243-0.553 2.298-1.136 3.297-1.799l-0.082 0.051c0.338-0.209 0.674-0.418 1.014-0.619 1.633-0.967 2.945-1.816 4.129-2.672 0.579-0.412 1.083-0.819 1.563-1.253l-0.014 0.013c0.373-0.302 0.671-0.682 0.871-1.116l0.008-0.019c0.031-0.079 0.048-0.17 0.048-0.266 0-0.057-0.006-0.112-0.018-0.165l0.001 0.005c-0.146-1.017-0.755-1.866-1.603-2.337l-0.016-0.008zM5.181 29.041h-2.383v-10.709h2.383zM28.719 22.541c-0.412 0.37-0.86 0.729-1.328 1.062l-0.047 0.032c-1.143 0.826-2.418 1.65-4.014 2.596-0.348 0.205-0.691 0.418-1.037 0.631-0.854 0.573-1.837 1.12-2.864 1.586l-0.13 0.053c-1.152 0.474-2.49 0.748-3.892 0.748-1.203 0-2.359-0.203-3.436-0.575l0.074 0.022c-1.555-0.648-3.363-1.145-5.248-1.407l-0.117-0.013v-7.436h2.062l4.76 1.395c0.062 0.020 0.133 0.031 0.207 0.031 0.001 0 0.003 0 0.004 0h3.89c0.883 0 1.197 0.521 1.197 0.969s-0.314 0.969-1.197 0.969h-6.809c-0.414 0-0.75 0.336-0.75 0.75s0.336 0.75 0.75 0.75v0h7.781c0.001 0 0.003 0 0.004 0 0.11 0 0.214-0.024 0.307-0.068l-0.004 0.002 7.795-3.5c0.288-0.132 0.625-0.209 0.98-0.209 0.265 0 0.52 0.043 0.758 0.122l-0.017-0.005c0.383 0.23 0.658 0.604 0.752 1.046l0.002 0.011c-0.136 0.159-0.278 0.302-0.429 0.435l-0.005 0.004zM16.432 16.74c0.138 0.153 0.336 0.248 0.557 0.248s0.419-0.095 0.556-0.247l0.001-0.001 5.969-6.616c1.082-1.007 1.774-2.421 1.832-3.997l0-0.010c0-0.012 0-0.026 0-0.040 0-1.332-0.543-2.536-1.42-3.405l-0-0c-0.904-0.878-2.138-1.42-3.5-1.42-1.334 0-2.546 0.52-3.445 1.367l0.003-0.002c-0.851-0.723-1.962-1.163-3.176-1.163-0.432 0-0.85 0.056-1.249 0.16l0.034-0.008c-1.754 0.498-3.107 1.852-3.597 3.569l-0.009 0.037c-0.094 0.364-0.148 0.781-0.148 1.212 0 1.455 0.619 2.766 1.609 3.683l0.003 0.003zM10.437 5.601c0.351-1.238 1.306-2.193 2.518-2.539l0.026-0.006c0.249-0.070 0.536-0.11 0.832-0.11h0c1.048 0.034 1.983 0.493 2.643 1.209l0.002 0.003c0.136 0.136 0.323 0.22 0.53 0.22s0.395-0.084 0.53-0.22v0c0.742-0.818 1.79-1.347 2.961-1.407l0.010-0h0.025c1.842 0.012 3.33 1.508 3.33 3.351 0 0.002 0 0.003 0 0.005v-0c-0.060 1.182-0.589 2.229-1.403 2.969l-0.003 0.003-0.027 0.028-5.424 6.013-5.45-6.041c-0.737-0.651-1.199-1.598-1.199-2.653 0-0.292 0.035-0.576 0.102-0.848l-0.005 0.024z"></path> </g></svg>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabbar__item">
+            <div class="tabbar-item" ng-click="goTo('home.matches');">
+                <div class="tabbar-item__icon">
+                    <div class="icon icon--stretch" >
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.0195 2C6.49953 2 2.01953 5.81 2.01953 10.5C2.042 11.6688 2.32261 12.8182 2.84125 13.8658C3.35989 14.9135 4.10373 15.8335 5.01953 16.5601V19.91C5.01924 20.3202 5.13907 20.7214 5.3642 21.0642C5.58933 21.407 5.9099 21.6765 6.28638 21.8392C6.66285 22.0019 7.07877 22.0508 7.48273 21.9799C7.88668 21.9089 8.26104 21.7213 8.55957 21.4401L11.1696 18.9801H12.0396C17.5596 18.9801 22.0396 15.1801 22.0396 10.4801" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M20.6 1.00003C20.008 1.00175 19.4377 1.2171 19 1.60422C18.6567 1.30103 18.23 1.10139 17.7719 1.02963C17.3138 0.957876 16.844 1.0171 16.42 1.20011C15.9959 1.38311 15.6359 1.68198 15.3838 2.06026C15.1316 2.43854 14.9983 2.87989 15 3.33048C15 6.11406 19 8 19 8C19 8 23 6.11406 23 3.33048C23 2.71241 22.7472 2.11966 22.2971 1.68261C21.847 1.24557 21.2365 1.00003 20.6 1.00003Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </div>
+                    <div class="tabbar-item__icon-indicator is-shown" ng-if="unreadMessage"></div>
+                </div>
+            </div>
+        </div>
+        
+   
+
+        <div class="tabbar__item">
+            <div class="tabbar-item" ng-click="goTo('home.profile');">
+                <div class="tabbar-item__icon">
+                    <div class="icon icon--stretch">
+                        <div class="brick-img profile-photo box-shadow-credits" 
+                        style="background-image: url('{{me.profile_photo}}');width: 30px;height:30px;border-radius: 15px"></div>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+
+
+

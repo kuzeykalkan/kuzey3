@@ -1,0 +1,286 @@
+<script>
+  aurl = 'users';
+  currentMenu = 'all-users';
+  currentMenuCollapse = 'users';  
+</script>
+<?php 
+$currentTime = time()-300;
+
+$days = 86400 * 7;
+$days = time() - $days;
+$date1 = date('m/d/Y', $days);
+$date2 = date('m/d/Y', time());
+
+if($sm['moderator']['Users'] == 'No'){
+  header("Location: ".$sm['config']['site_url'].'cp');
+  exit;
+}
+?>
+
+
+
+<!-- SECTION CONTENT -->
+<div class="container-fluid page__container" style="padding-top:25px ">
+  <div class="card-group" id="results">
+      <div class="card card-body text-center">
+          <div class="d-flex flex-row align-items-center">
+              <div class="card-header__title m-0">Toplam</div>
+              <div class="text-amount ml-auto font16"><?= selectC('users',''); ?></div>
+          </div>
+      </div>
+      
+      
+      <div class="card card-body text-center">
+          <div class="d-flex flex-row align-items-center">
+              <div class="card-header__title m-0">Gerçek Kullanıcı</div>
+              <div class="text-amount ml-auto font16"><?= selectC('users','where fake = 0'); ?></div>
+          </div>
+      </div>      
+      <div class="card card-body text-center">
+          <div class="d-flex flex-row align-items-center">
+              <div class="card-header__title m-0">Fake Kullanıcı</div>
+              <div class="text-amount ml-auto font16"><?= selectC('users','where fake = 1'); ?></div>
+          </div>
+      </div>
+      <div class="card card-body text-center">
+          <div class="d-flex flex-row align-items-center">
+              <div class="card-header__title m-0">Premium Kullanıcı</div>
+              <div class="text-amount ml-auto font16"><?= selectC('users','where premium = 1'); ?></div>
+          </div>
+      </div>
+      <div class="card card-body text-center">
+          <div class="d-flex flex-row align-items-center">
+              <div class="card-header__title m-0">Çevrimiçi Kullanıcı</div>
+              <div class="text-amount ml-auto font16"><?= selectC('users','where last_access >= '.$currentTime); ?></div>
+          </div>
+      </div>
+      <div class="card card-body text-center">
+          <div class="d-flex flex-row align-items-center">
+              <div class="card-header__title m-0">Onaylanmış Kullanıcı</div>
+              <div class="text-amount ml-auto font16"><?= selectC('users','where verified = 1'); ?></div>
+          </div>
+      </div>                                                      
+  </div>
+
+<button class="button button1" href="javascript:;"  onclick="goTo('mediaPhotos','All')" >Kullanıcı Medyası</button>
+<button class="button button1" href="javascript:;"  onclick="goTo('verifyUsers')" >Onay Bekleyenler</button>
+<button class="button button1" href="javascript:;"  onclick="goTo('bannedUsers')" >Banlı Kullanıcılar</button>
+<button class="button button1" href="javascript:;"  onclick="goTo('reportedUsers')" >Şikayet Edilmiş  Kullanıcılar</button>
+
+
+    <form action="veriekle.php" method="post">
+ 
+
+        <label for="amount">Ödül Tutarı:</label>
+        <input type="number" id="amount" name="amount" min="1" required><br><br>
+
+        <button type="submit">Ekle</button>
+    </form>
+
+
+
+    <form action="aigüncelle.php" method="post">
+ 
+
+        <label for="amount">AI Modunu Yazın:</label>
+        <input type="text" id="amount2" name="amount2" min="1" required><br><br>
+
+        <button type="submit">Güncelle</button>
+    </form>
+
+
+
+  <div class="card card-form d-flex flex-column flex-sm-row" > //
+      <div class="card-form__body card-body-form-group flex">
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="filter_name">Ara</label>
+                      <input id="filter_name" type="search" data-sf="search" class="form-control" placeholder="Search users by name,email,ip or id">
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="form-group">
+                      <label for="filter_category">Cinsiyet</label><br>
+                      <select id="filter_category" data-sf="gender" class="custom-select">
+                          <option value="all">Tüm Cinsiyetler</option>
+                          <?php
+                              foreach($sm['genders'] as $entry){
+                                  echo '<option value="'.$entry['id'].'" style="color:#000;">
+                                  '.$entry['text'].'</option>';
+                              }
+                          ?>
+                      </select>
+                  </div>
+              </div> 
+                                                  
+              <div class="col-sm-3">
+                  <div class="form-group">
+                      <label for="filter_date">Kayıt tarihi</label>
+                      <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1" style="position: absolute;right: 12px;top: -3px;z-index: 9;cursor: pointer;">
+                          <input type="checkbox" id="filterDate" data-sfc="dateEnabled" class="custom-control-input" style="cursor: pointer;">
+                          <label class="custom-control-label" for="filterDate" style="cursor: pointer;"></label>
+                      </div>
+                      <input type="text" class="form-control" id="filterDateOverlay" value="<?=$date1;?> to <?=$date2;?>" style="position: absolute;width: 90%;" disabled>                       
+                      <input id="filter_date" type="text" class="form-control" placeholder="Select date ..." data-sf="date" value="<?=$date1;?> to <?=$date2;?>"  data-toggle="flatpickr" data-flatpickr-mode="range" data-flatpickr-alt-format="m/d/Y" data-flatpickr-date-format="m/d/Y" >
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group" style="width:45%;display: inline-table;">
+                      <label for="filter_country">Şehir</label><br>
+                      <select id="filter_country" data-sf="country" data-sf-country class="custom-select">
+                          <option value="all">Tüm Konumlar</option>
+                          <?php 
+                            $countries = getArrayDSelected('country','users');
+                            foreach ($countries as $val) { ?>
+                              <option value="<?= $val['country']; ?>"><?= $val['country']; ?></option>
+                          <?php } ?>
+                      </select>
+                  </div>
+                  <div class="form-group" style="width:45%;margin-left:5%;display: inline-table;">
+                      <label for="filter_city">Şehir</label><br>
+                      <select id="filter_city" data-sf="city" data-sf-city disabled class="custom-select">
+                          <option value="all">Tüm konumlar</option>
+                      </select>
+                  </div>                  
+              </div> 
+
+              <div class="col-sm-3">
+                  <div class="form-group">
+                      <label for="filter_category">Yaş</label><br>
+                      <input type="number" class="form-control" data-sf="age1" value="18" style="width: 40%;display: inline-table;">
+                      <input type="number" class="form-control" data-sf="age2" value="45" style="width: 40%;display: inline-table;margin-left: 20px">
+                  </div>
+              </div> 
+              <div class="col-sm-3">
+                  <div class="form-group">
+                      <label for="filter_category">Siparişi veren</label><br>
+                      <select id="filter_category" data-sf="order" class="custom-select">
+                          <option value="last_access">Son Bağlantı</option>                        
+                          <option value="id">Id</option>
+                          <option value="credits">Kredi</option>
+                          <option value="popular">Popüler</option>
+                          <option value="verified">Onaylı</option>
+                          <option value="moderator">Moderator</option>
+                      </select>
+                  </div>
+              </div>              
+          </div>
+          <div class="row">          
+              <div class="col-sm-2">
+                  <div class="form-group">
+                      <label for="filter_online">Çevrimiçi kullanıcılar</label>
+                      <div class="custom-control custom-checkbox mt-sm-2">
+                          <input type="checkbox" data-sfc="online" class="custom-control-input" id="filter_online" >
+                          <label class="custom-control-label" for="filter_online">Evet</label>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-2">
+                  <div class="form-group">
+                      <label for="filter_real">Gerçek kullanıcılar</label>
+                      <div class="custom-control custom-checkbox mt-sm-2">
+                          <input type="checkbox" class="custom-control-input" data-sfc="realUser" checked="true"  id="filter_real" >
+                          <label class="custom-control-label" for="filter_real">Yes</label>
+                      </div>
+                  </div>
+              </div>                
+              <div class="col-sm-2">
+                  <div class="form-group">
+                      <label for="filter_fake">Fake Kullanıcılar</label>
+                      <div class="custom-control custom-checkbox mt-sm-2">
+                          <input type="checkbox" class="custom-control-input" data-sfc="fake" checked="true"  id="filter_fake" >
+                          <label class="custom-control-label" for="filter_fake">Yes</label>
+                      </div>
+                  </div>
+              </div>                                                   
+              <div class="col-sm-2">
+                  <div class="form-group">
+                      <label for="filter_premium">Premium</label>
+                      <div class="custom-control custom-checkbox mt-sm-2">
+                          <input type="checkbox" class="custom-control-input" data-sfc="premium"  id="filter_premium">
+                          <label class="custom-control-label" for="filter_premium">Evet</label>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-2">
+                  <div class="form-group">
+                      <label for="filter_verified">Onaylı</label>
+                      <div class="custom-control custom-checkbox mt-sm-2">
+                          <input type="checkbox" class="custom-control-input" data-sfc="verified"  id="filter_verified">
+                          <label class="custom-control-label" for="filter_verified">Evet</label>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-2">
+                  <div class="form-group">
+                      <label for="filter_withStory">Hikaye Paylaşanlar</label>
+                      <div class="custom-control custom-checkbox mt-sm-2">
+                          <input type="checkbox" class="custom-control-input" data-sfc="withStory"  id="filter_withStory">
+                          <label class="custom-control-label" for="filter_withStory">Evet</label>
+                      </div>
+                  </div>
+              </div>                            
+          </div>
+      </div>
+      <button class="btn bg-white border-left border-top border-top-sm-0 rounded-top-0 rounded-top-sm rounded-left-sm-0" data-update-user-search style="outline: none">
+        <i class="material-icons text-primary icon-30pt" data-update-search-btn>refresh</i></button>
+  </div>
+
+
+
+
+
+  <div class="card card-form">
+      <div class="row no-gutters">
+          <div class="col-lg-12 card-form__body">
+
+              <div class="table-responsive border-bottom" data-search data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]' style="min-height: 450px">   
+                  <table class="table mb-0 thead-border-top-0">
+                      <thead>
+                          <tr style="background: #fff">
+                              <th style="width: 18px;">
+                                  <div class="custom-control custom-checkbox">
+                                      <input type="checkbox" onclick="checkAll(this)" class="custom-control-input" data-target="#usersTable" id="customCheckAll">
+                                      <label class="custom-control-label" style="cursor: pointer;"  for="customCheckAll"><span class="text-hide">Tümünü değiştir</span></label>
+                                  </div>
+                              </th>
+                              <th  style="width: 250px;">Ad Soyah</th>
+                              <th style="width: 210px;">Konum</th>
+                              <th style="width: 37px;">Tür</th>
+                              <th style="width: 140px;">Son Bağlantı Zamanı</th>
+                              <th style="width: 51px;">Krediler</th>
+                              <th style="width: 51px;">Premium</th>  
+                              <th style="width: 51px;">IP Adresi</th>                                                                                
+                              <th style="width: 24px;"></th>
+                          </tr>
+                      </thead>
+
+                      <tbody class="list" id="usersTable" style="height: 400px;overflow-y: scroll">
+                      </tbody>
+                  </table>
+              </div>
+
+              <div class="card-footer text-center">
+                <span class="text-muted">Göster </span>
+                <span data-current-view-users>25</span>
+                <span class="text-muted"></span>
+                <span data-current-total-users></span> 
+                <span class="text-muted">Sonuç</span>
+                <a href="#results" data-nextPage-user-search>
+                  <i class="material-icons icon-muted float-right">arrow_forward</i>
+                </a>
+                <a href="#results" data-backPage-user-search style="display: none">
+                  <i class="material-icons icon-muted float-left" >arrow_backward</i>
+                </a>
+              </div> 
+          </div>         
+      </div>
+  </div>                     
+
+</div>
+
+
+

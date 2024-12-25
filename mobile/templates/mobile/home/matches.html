@@ -1,0 +1,414 @@
+<ion-view title="" hide-nav-bar="true">
+  
+ <div class="connections__spotlight connections__spotlight--fixed" style=" background: #fafbff; fixed;top:0px;z-index: 999">
+
+
+<div class="header_logo" style ="background: #fff;" >
+ <img src="https://kissmeet.online/logokissmet3.png" style="
+    height: 45px;
+    width: 105px;
+    margin-top: 5px;
+    margin-left: 24px;
+">
+  <p>
+ <img src="https://kissmeet.online/kalpdating.png" style="margin-top: -34px;vertical-align: middle;float: right;/* margin-left: -42px; */" width="25" height="25">
+   
+  </p>
+  <p>
+<img src="https://kissmeet.online/ayardating.png" style="margin-top: -34px;margin-right: 47px;vertical-align: middle;fl;float: right;" width="25" height="25">
+  </p>
+ </div>
+ 
+
+
+<style>
+    .header_logo p img {
+  margin-right: 5px; /* Add space to the right of the image */
+}
+    
+    
+</style>
+ 
+     
+<p style="
+    font-weight: 700;
+    font-size: 14px;
+    padding: 6px;
+    margin-top: -6px;
+    color: #424042;
+    margin-left: 17px;
+">Sohbet Listesi</p>
+    <div class="spotlight">
+        <div class="spotlight_">
+            <div class="spotlight__action js-touchable js-spotlight-action">
+                <div class="spotlight__item js-spotlight-add-action js-spotlight-add-after-this">
+                    <div class="brick brick--squared brick--stretch " ng-click="openSpot()" >
+                        <div class="brick__image" style="background-image: url('{{me.profile_photo}}')"></div>
+                        <div class="brick__badge brick__badge--br">
+                            <div class="icon icon--md  icon--shadow gradient18" >
+                                <svg class="icon__content icon__content--inactive">
+<svg viewBox="0 0 64 64" id="icon-circle-plus-red-tomato" width="100%" height="100%"><circle cx="32" cy="32" r="32" fill="#FF661B"></circle><path fill="#FFF" d="M33.6 30.4V19.2h-3.2v11.2H19.2v3.2h11.2v11.2h3.2V33.6h11.2v-3.2z"></path></svg>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spotlight__content" ng-repeat="p in spotlight track by $index" style="margin-left: 5px;" >
+                <div class="spotlight__users js-spotlight-users" ng-click="openProfileModal({{p.id}},'{{p.name}}','{{p.photo}}',{{p.age}},'{{p.city}}',{{p.status}})">
+                    <div class="spotlight__item js-item">
+                        <div class="brick brick--squared brick--stretch vivify popInRight delay-{{$index * 100}}" >
+                            <div class="brick__image " style="background-image: url('{{trustPhoto(p.spotPhoto)}}')"></div>
+                            <div class="csms-online-status csms-online-status--online" ng-if="p.status == 1" style="position: absolute;z-index: 9;right: 5px;bottom: 5px;"></div>
+                        </div>
+                    </div>                            
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>  
+
+<div class="floating-action" style="display: none;">
+    <div class="cta-box">
+        <div class="cta-box__content comforta">{{alang[189].text}}.</div>
+        <div class="cta-box__buttons">
+            <div class="button-wrapper">
+                <button class="button button--primary   js-touchable qa-button">
+                    <div class="button__content"><span class="button__text">{{alang[190].text}}</span></div><span class="button__loader"><i class="icon-svg icon-svg--stretch"><svg class="icon-svg_ icon-svg__inactive"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#loader"></use></svg></i></span></button>
+                <button class="inline-button inline-button--primary inline-button--sm"><span class="inline-button__text">{{alang[191].text}}</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="position:fixed;bottom:50px;left:0;width:100%;height:60px;background:none;z-index: 99 !important;pointer-events: none"><div class="section-footer-effect"></div>
+</div>  
+<ion-content style="background:#fff;top:50px;" class="vivify fadeIn" scroll="true" delegate-handle="userMessageScroll" >
+
+<div class="page matches visible" style="z-index: 700;margin-top:0px;padding-bottom: 60px;">
+
+              <div class="tabs tabs-top visible" style="background: #fff;border-color: #fff;">
+<ion-scroll direction="x" class="scroll-horizontal" style="background: none;">         
+        <div class="tab js-contact-list-folders__item {{tab1}}" style="display: inline-table;margin-left: 15px" ng-model="tabALL" ng-click="onTabShow(1)" >
+            <div class="tab__label comforta" style="font-weight: 800;font-size: 16px">Sohbet Listesi</div>
+        </div>
+        <div class="tab js-contact-list-folders__item {{tab2}}"  style="display: inline-table;margin-left: 15px" ng-model="tabUNREAD" ng-click="onTabShow(2)">
+            <div class="tab__label comforta" style="font-weight: 800;font-size: 16px">{{alang[193].text}}</div>
+        </div>
+        
+        <div class="tab js-contact-list-folders__item {{tab3}}"  style="display: inline-table;margin-left: 15px" ng-model="tabONLINE" ng-click="onTabShow(3)">
+            <div class="tab__label comforta" style="font-weight: 800;font-size: 16px">{{alang[194].text}}</div>
+        </div> 
+                                   
+</ion-scroll>                              
+    </div> 
+    
+        <div class="folder-view">
+            <div class="" style="margin-top: 90px">
+           
+            
+            </div>
+  
+
+            <div class="contact-list">
+                <div class="csms-connections-item csms-connections-item--user js-mw-connections-item" ng-class="!canSeeFans ? 'sblur' : ''" ng-click="openModalBoost(2)" ng-if="showBoostDiscover">
+                    <div class="feature-card qa-feature-card js-click-action js-feature-card">
+                        <div class="feature-card__promo" >
+                            <div class="brick brick--md" data-qa="brick">
+                                <div class="brick__image" style="background-image: url('{{me.profile_photo}}')"></div>
+                                <div class="brick__badge brick__badge--br">
+                                    <div class="icon icon--md  icon--branded  icon--shadow " data-qa="icon">
+                                        <svg class="icon__content icon__content--inactive">
+<svg viewBox="0 0 64 64" id="icon-circle-extra-shows" width="100%" height="100%"><circle fill="#00CAA8" cx="32" cy="32" r="32"></circle><path d="M37.19 21.33h5.84a3.2 3.2 0 0 1 3.2 3.2v17.78a3.2 3.2 0 0 1-3.2 3.2H30.21a3.2 3.2 0 0 1-2.74-1.56l10.25-2.75A4.62 4.62 0 0 0 41 35.54l-3.8-14.2zM16.47 23.7l4.6 17.18A3.2 3.2 0 0 0 25 43.14l12.35-3.32a3.2 3.2 0 0 0 2.27-3.91l-4.6-17.18a3.2 3.2 0 0 0-3.92-2.26l-12.36 3.31a3.2 3.2 0 0 0-2.27 3.92z" fill="#FFF"></path></svg>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-card__content">
+                            <div class="feature-card__title">{{alang[231].text}}</div>
+                        </div>
+                    </div>
+                </div>
+                <ion-list  can-swipe="listCanSwipe" delegate-handle="chat-list" scroll="true">
+       
+				<ion-item style="border:none;padding:0;margin-left: -15px" ng-repeat="p in matches track by $index" ng-if="all" ng-show="$index < loadM" class=""  nav-transition="none" > 
+                    <div class="csms-connections-item csms-connections-item--user js-mw-connections-item">
+                        <div class="csms-spring-box">
+                            <div class="csms-spring-box__media">
+                                <div class="csms-connections-item__media">
+                                    <div class="csms-brick csms-brick--circle csms-brick--sm " ng-class="p.story > 0 ? 'storyOn' : ''" ng-click="openStory(p.id,p.story)">
+                                        <div class="csms-brick__avatar">
+                                            <div class="csms-avatar">
+                                                <div class="csms-avatar__image box-shadow-credits" style="background-image: url('{{p.photo}}');"></div>
+                                            </div>
+                                        </div>
+                                        <div class="csms-brick__badge csms-brick__badge--br" ng-if="p.unreadCount > 0">
+                                            <div class="csms-mark csms-mark--red csms-mark--shadow">
+                                                <span class="csms-p-3">{{p.unreadCount}}</span>
+                                            </div>
+                                        </div>                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="csms-spring-box__content" ng-click="changePage('home.messaging','left',p)">
+                                <div class="csms-connections-item__profile">
+                                    <span class="csms-p-1">
+                                        <div class="csms-profile-info">
+                                            <div class="csms-profile-info__name">
+                                                <span class="csms-profile-info__name-inner">{{p.name}}</span>
+                                            </div>
+                                            <div class="csms-profile-info__status">
+                                                <img src="img/vip.png" ng-if="p.premium == 1" style="width:14px;border-radius: 50%;border:1px solid #FFE54F;margin-right: 8px">                                                
+                                                <div class="csms-online-status csms-online-status--online" ng-if="p.status == 1"></div>
+
+                                            </div>
+                                        </div>
+                                    </span>
+                                 </div>
+                                <div class="csms-connections-item__message" data-qa="csms-connections-item__message">
+                                    <span class="csms-p-1" ng-bind-html="unEntity(p.last_m) | nl2br"></span>
+                                    <div class="text-xs text-muted text-right ng-binding" style="position:absolute;right:-40px;top:10px;">{{p.last_m_t}}</div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>					               
+
+						<ion-option-button class="button-positive button-chat-delete"
+										   ng-click="onItemDelete(p);matches.splice($index, 1)">
+						 <i class="icon ion-ios-trash" style="width:50px"></i>
+						</ion-option-button>							  
+					</ion-item>
+
+					<ion-item style="border:none;padding:0;margin-left: -15px" ng-repeat="p in matches track by $index" ng-if="p.unread == 3 && unread" ng-show="$index < loadM"  nav-transition="none" > 
+					               
+                    <div class="csms-connections-item csms-connections-item--user js-mw-connections-item">
+                        <div class="csms-spring-box">
+                            <div class="csms-spring-box__media">
+                                <div class="csms-connections-item__media">
+                                    <div class="csms-brick csms-brick--circle csms-brick--sm" ng-class="p.story > 0 ? 'storyOn' : ''" ng-click="openStory(p.id,p.story)">
+                                        <div class="csms-brick__avatar">
+                                            <div class="csms-avatar">
+                                                <div class="csms-avatar__image" style="background-image: url('{{p.photo}}');"></div>
+                                            </div>
+                                        </div>
+                                        <div class="csms-brick__badge csms-brick__badge--br" ng-if="p.unreadCount > 0">
+                                            <div class="csms-mark csms-mark--red csms-mark--shadow">
+                                                <span class="csms-p-3">{{p.unreadCount}}</span>
+                                            </div>
+                                        </div>                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="csms-spring-box__content" ng-click="changePage('home.messaging','left',p)">
+                                <div class="csms-connections-item__profile">
+                                    <span class="csms-p-1">
+                                        <div class="csms-profile-info">
+                                            <div class="csms-profile-info__name">
+                                                <span class="csms-profile-info__name-inner">{{p.name}}</span>
+                                            </div>
+                                            <div class="csms-profile-info__status">
+                                                <img src="img/vip.png" ng-if="p.premium == 1" style="width:14px;border-radius: 50%;border:1px solid #FFE54F;margin-right: 8px">                                                
+                                                <div class="csms-online-status csms-online-status--online" ng-if="p.status == 1"></div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                 </div>
+                                <div class="csms-connections-item__message" data-qa="csms-connections-item__message">
+                                    <span class="csms-p-1" ng-bind-html="unEntity(p.last_m) | nl2br"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+						<ion-option-button class="button-positive button-chat-delete"
+										   ng-click="onItemDelete(p);matches.splice($index, 1)">
+						 <i class="icon ion-ios-trash" style="width:50px"></i>
+						</ion-option-button>							  
+					</ion-item>
+
+                    <ion-item style="border:none;padding:0;margin-left: -15px" ng-repeat="p in matches track by $index" ng-if="p.status == 1 && online" ng-show="$index < loadM"  nav-transition="none" > 
+                                   
+                    <div class="csms-connections-item csms-connections-item--user js-mw-connections-item">
+                        <div class="csms-spring-box">
+                            <div class="csms-spring-box__media">
+                                <div class="csms-connections-item__media">
+                                    <div class="csms-brick csms-brick--circle csms-brick--sm" ng-class="p.story > 0 ? 'storyOn' : ''" ng-click="openStory(p.id,p.story)">
+                                        <div class="csms-brick__avatar">
+                                            <div class="csms-avatar">
+                                                <div class="csms-avatar__image" style="background-image: url('{{p.photo}}');"></div>
+                                            </div>
+                                        </div>
+                                        <div class="csms-brick__badge csms-brick__badge--br" ng-if="p.unreadCount > 0">
+                                            <div class="csms-mark csms-mark--red csms-mark--shadow">
+                                                <span class="csms-p-3">{{p.unreadCount}}</span>
+                                            </div>
+                                        </div>                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="csms-spring-box__content" ng-click="changePage('home.messaging','left',p)">
+                                <div class="csms-connections-item__profile">
+                                    <span class="csms-p-1">
+                                        <div class="csms-profile-info">
+                                            <div class="csms-profile-info__name">
+                                                <span class="csms-profile-info__name-inner">{{p.name}}</span>
+                                            </div>
+                                            <div class="csms-profile-info__status">
+                                                <img src="img/vip.png" ng-if="p.premium == 1" style="width:14px;border-radius: 50%;border:1px solid #FFE54F;margin-right: 8px">                                                
+                                                <div class="csms-online-status csms-online-status--online" ng-if="p.status == 1"></div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                 </div>
+                                <div class="csms-connections-item__message" data-qa="csms-connections-item__message">
+                                    <span class="csms-p-1" ng-bind-html="unEntity(p.last_m) | nl2br"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                        <ion-option-button class="button-positive button-chat-delete"
+                                           ng-click="onItemDelete(p);matches.splice($index, 1)">
+                         <i class="icon ion-ios-trash" style="width:50px"></i>
+                        </ion-option-button>                              
+                    </ion-item> 
+
+                    <div class="only-premium" ng-show="!canSeeFans" style="top: 80px;" >            
+                        <div class="credits-section text-center" style="margin-top: 0px;">                    
+                            <div class="wrapper text-center">
+                              <div class="pos-rlt">
+                                <div class="thumb-xxl rounded profileP border-profile" style="background-image:url({{me.profile_photo}});height:{{w}}px;width:{{w}}px;" ></div>                        
+                              </div>
+                            </div>                      
+                            <h1>{{myfans.length}} {{alang[74].text}}</h1>
+                            <h4>{{alang[75].text}}</h4>
+                            <center><span class="spotlight-me" ng-click="openPremiumModal()" style="background:#8A21EF;border:#2821EF">{{alang[76].text}}</span></center>
+                            <br>                   
+                        </div>
+                    </div> 
+
+
+					<ion-infinite-scroll class="hidden" immediate-check="false" on-infinite="loadMore()" distance="10%">
+					</ion-infinite-scroll>	
+				</ion-list>
+
+
+                <div class="contact-list__loader_inline" ng-if="loaderMore" >
+                    <div class="loader small grey centered ">
+                        <div class="first dot"></div>
+                        <div class="second dot"></div>
+                        <div class="third dot"></div>
+                    </div>
+                </div>                
+
+             
+            </div>
+        </div>
+    </div>
+		
+  </ion-content>
+
+<!--- BOTTOM MENU -->
+<div class="tabbar">
+    <div class="tabbar__items">
+        
+        <div class="tabbar__item">
+            <div class="tabbar-item " ng-click="goTo('home.meet');">
+                <div class="tabbar-item__icon">
+                    <div class="icon icon--stretch" >
+                        <svg class="icon__content icon__content--inactive">
+                            <svg fill="#000000" height="28px" width="28px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M437.018,74.981C388.667,26.63,324.379,0.001,256,0.001c-68.381,0-132.668,26.629-181.02,74.981 C26.629,123.333,0,187.62,0,256s26.629,132.667,74.981,181.019c48.352,48.352,112.639,74.981,181.02,74.981 c68.38,0,132.668-26.629,181.019-74.981C485.372,388.667,512,324.38,512,256S485.371,123.333,437.018,74.981z M86.295,86.295 c29.377-29.376,65.031-50.186,103.933-61.205c-15.595,12.69-29.9,30.009-42.327,51.55 c-26.707,46.292-41.845,107.129-42.91,172.006H16.122C17.957,187.296,42.702,129.886,86.295,86.295z M86.295,425.706 c-43.342-43.342-68.049-100.346-70.133-161.3h88.851c1.211,64.483,16.326,124.913,42.888,170.955 c12.427,21.541,26.732,38.86,42.327,51.55C151.325,475.891,115.67,455.082,86.295,425.706z M247.594,264.405v231.112 c-32.126-3.557-62.34-27.429-85.835-68.154c-25.192-43.667-39.546-101.26-40.744-162.96h126.579V264.405z M247.594,248.645 H120.993c1.054-62.096,15.431-120.096,40.766-164.01c23.495-40.724,53.709-64.596,85.835-68.153V248.645z M425.706,86.295 c43.591,43.591,68.338,101.002,70.172,162.35h-88.867c-1.065-64.877-16.203-125.713-42.91-172.006 c-12.427-21.541-26.733-38.86-42.327-51.55C360.674,36.109,396.33,56.919,425.706,86.295z M263.354,248.645V16.369 c32.518,3.147,63.135,27.099,86.886,68.267c25.335,43.915,39.712,101.914,40.766,164.01H263.354V248.645z M263.354,495.632 V264.405h127.631c-1.198,61.698-15.552,119.293-40.744,162.96C326.489,468.533,295.872,492.485,263.354,495.632z M425.706,425.706 c-29.376,29.376-65.031,50.186-103.933,61.205c15.595-12.689,29.9-30.008,42.327-51.55 c26.563-46.042,41.678-106.473,42.888-170.955h88.851C493.754,325.36,469.048,382.364,425.706,425.706z"></path> </g> </g> </g></svg>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabbar__item">
+            <div class="tabbar-item "  ng-click="goTo('home.explore');">
+                <div class="tabbar-item__icon">
+                    <div class="icon icon--stretch" >
+<svg fill="#000000" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>hand-holding-heart</title> <path d="M29.064 19.701c-0.421-0.177-0.91-0.28-1.423-0.28-0.577 0-1.123 0.13-1.611 0.362l0.023-0.010-5.778 2.595c0.003-0.047 0.026-0.087 0.026-0.134-0.015-1.371-1.129-2.476-2.502-2.476-0.069 0-0.137 0.003-0.204 0.008l0.009-0.001h-3.783l-4.76-1.395c-0.062-0.020-0.133-0.031-0.207-0.031-0.001 0-0.003 0-0.004 0h-2.169v-0.757c-0-0.414-0.336-0.75-0.75-0.75h-3.883c-0.414 0-0.75 0.336-0.75 0.75v0 12.208c0 0.414 0.336 0.75 0.75 0.75h3.883c0.414-0 0.75-0.336 0.75-0.75v0-1.005c1.818 0.284 3.445 0.742 4.987 1.367l-0.149-0.054c1.15 0.416 2.478 0.656 3.862 0.656 0.007 0 0.014 0 0.021-0h-0.001c0.005 0 0.011 0 0.017 0 1.604 0 3.133-0.319 4.528-0.898l-0.078 0.029c1.243-0.553 2.298-1.136 3.297-1.799l-0.082 0.051c0.338-0.209 0.674-0.418 1.014-0.619 1.633-0.967 2.945-1.816 4.129-2.672 0.579-0.412 1.083-0.819 1.563-1.253l-0.014 0.013c0.373-0.302 0.671-0.682 0.871-1.116l0.008-0.019c0.031-0.079 0.048-0.17 0.048-0.266 0-0.057-0.006-0.112-0.018-0.165l0.001 0.005c-0.146-1.017-0.755-1.866-1.603-2.337l-0.016-0.008zM5.181 29.041h-2.383v-10.709h2.383zM28.719 22.541c-0.412 0.37-0.86 0.729-1.328 1.062l-0.047 0.032c-1.143 0.826-2.418 1.65-4.014 2.596-0.348 0.205-0.691 0.418-1.037 0.631-0.854 0.573-1.837 1.12-2.864 1.586l-0.13 0.053c-1.152 0.474-2.49 0.748-3.892 0.748-1.203 0-2.359-0.203-3.436-0.575l0.074 0.022c-1.555-0.648-3.363-1.145-5.248-1.407l-0.117-0.013v-7.436h2.062l4.76 1.395c0.062 0.020 0.133 0.031 0.207 0.031 0.001 0 0.003 0 0.004 0h3.89c0.883 0 1.197 0.521 1.197 0.969s-0.314 0.969-1.197 0.969h-6.809c-0.414 0-0.75 0.336-0.75 0.75s0.336 0.75 0.75 0.75v0h7.781c0.001 0 0.003 0 0.004 0 0.11 0 0.214-0.024 0.307-0.068l-0.004 0.002 7.795-3.5c0.288-0.132 0.625-0.209 0.98-0.209 0.265 0 0.52 0.043 0.758 0.122l-0.017-0.005c0.383 0.23 0.658 0.604 0.752 1.046l0.002 0.011c-0.136 0.159-0.278 0.302-0.429 0.435l-0.005 0.004zM16.432 16.74c0.138 0.153 0.336 0.248 0.557 0.248s0.419-0.095 0.556-0.247l0.001-0.001 5.969-6.616c1.082-1.007 1.774-2.421 1.832-3.997l0-0.010c0-0.012 0-0.026 0-0.040 0-1.332-0.543-2.536-1.42-3.405l-0-0c-0.904-0.878-2.138-1.42-3.5-1.42-1.334 0-2.546 0.52-3.445 1.367l0.003-0.002c-0.851-0.723-1.962-1.163-3.176-1.163-0.432 0-0.85 0.056-1.249 0.16l0.034-0.008c-1.754 0.498-3.107 1.852-3.597 3.569l-0.009 0.037c-0.094 0.364-0.148 0.781-0.148 1.212 0 1.455 0.619 2.766 1.609 3.683l0.003 0.003zM10.437 5.601c0.351-1.238 1.306-2.193 2.518-2.539l0.026-0.006c0.249-0.070 0.536-0.11 0.832-0.11h0c1.048 0.034 1.983 0.493 2.643 1.209l0.002 0.003c0.136 0.136 0.323 0.22 0.53 0.22s0.395-0.084 0.53-0.22v0c0.742-0.818 1.79-1.347 2.961-1.407l0.010-0h0.025c1.842 0.012 3.33 1.508 3.33 3.351 0 0.002 0 0.003 0 0.005v-0c-0.060 1.182-0.589 2.229-1.403 2.969l-0.003 0.003-0.027 0.028-5.424 6.013-5.45-6.041c-0.737-0.651-1.199-1.598-1.199-2.653 0-0.292 0.035-0.576 0.102-0.848l-0.005 0.024z"></path> </g></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="tabbar__item" ng-if="reelsEnabled">
+            <div class="tabbar-item" ng-click="goTo('home.reels');">
+                <div class="tabbar-item__icon" >
+                    <div class="icon icon--stretch" style="margin-top:1px">
+                        <svg aria-label="Reels" fill="#000" height="28" role="img" viewBox="0 0 24 24" width="28"><line fill="none" stroke="#000" stroke-linejoin="round" stroke-width="1" x1="2.049" x2="21.95" y1="7.002" y2="7.002"></line><line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" x1="13.504" x2="16.362" y1="2.001" y2="7.002"></line><line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" x1="7.207" x2="10.002" y1="2.11" y2="7.002"></line><path d="M2 12.001v3.449c0 2.849.698 4.006 1.606 4.945.94.908 2.098 1.607 4.946 1.607h6.896c2.848 0 4.006-.699 4.946-1.607.908-.939 1.606-2.096 1.606-4.945V8.552c0-2.848-.698-4.006-1.606-4.945C19.454 2.699 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.546 2 5.704 2 8.552Z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path><path d="M9.763 17.664a.908.908 0 0 1-.454-.787V11.63a.909.909 0 0 1 1.364-.788l4.545 2.624a.909.909 0 0 1 0 1.575l-4.545 2.624a.91.91 0 0 1-.91 0Z" fill-rule="evenodd"></path></svg>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <div class="tabbar__item">
+            <div class="tabbar-item is-active" ng-click="goTo('home.matches');">
+                <div class="tabbar-item__icon">
+                    <div class="icon icon--stretch" >
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.0195 2C6.49953 2 2.01953 5.81 2.01953 10.5C2.042 11.6688 2.32261 12.8182 2.84125 13.8658C3.35989 14.9135 4.10373 15.8335 5.01953 16.5601V19.91C5.01924 20.3202 5.13907 20.7214 5.3642 21.0642C5.58933 21.407 5.9099 21.6765 6.28638 21.8392C6.66285 22.0019 7.07877 22.0508 7.48273 21.9799C7.88668 21.9089 8.26104 21.7213 8.55957 21.4401L11.1696 18.9801H12.0396C17.5596 18.9801 22.0396 15.1801 22.0396 10.4801" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M20.6 1.00003C20.008 1.00175 19.4377 1.2171 19 1.60422C18.6567 1.30103 18.23 1.10139 17.7719 1.02963C17.3138 0.957876 16.844 1.0171 16.42 1.20011C15.9959 1.38311 15.6359 1.68198 15.3838 2.06026C15.1316 2.43854 14.9983 2.87989 15 3.33048C15 6.11406 19 8 19 8C19 8 23 6.11406 23 3.33048C23 2.71241 22.7472 2.11966 22.2971 1.68261C21.847 1.24557 21.2365 1.00003 20.6 1.00003Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </div>
+                    <div class="tabbar-item__icon-indicator is-shown" ng-if="unreadMessage"></div>
+                </div>
+            </div>
+        </div>
+
+          
+
+
+        <div class="tabbar__item">
+            <div class="tabbar-item" ng-click="goTo('home.profile');">
+                <div class="tabbar-item__icon">
+                    <div class="icon icon--stretch">
+                        <div class="brick-img profile-photo box-shadow-credits" 
+                        style="background-image: url('{{me.profile_photo}}');width: 30px;height:30px;border-radius: 15px"></div>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+
+
+<div class="wrapper-reward" ng-if="showSpot">
+    <div class="modal-reward modal--congratulations gradient18 vivify fadeIn" style="border-radius: 10px">
+        <div class="modal-reward-top boostSpotlight" style="background: none">
+            <div class="klose animated fadeInUp" style="background: #333" ng-click="cancelSpot()" >
+                <i class="icon ion-close-round" style="margin-left:7px;line-height:27px;"></i>
+            </div>
+            <img class="modal-reward-icon u-imgResponsive animated fadeInUp rounded profileP"  style="width:120px;height:120px;background-image:url({{me.profile_photo}});">
+            <div class="modal-reward-header animated fadeInUp">{{alang[119].text}}</div>
+            <div class="modal-reward-subheader animated fadeInUp comforta" style="font-size: 12px">{{alang[120].text}}<br>{{alang[121].text}} <strong>{{spot_price}}</strong></div>
+        </div>
+        <div class="modal-reward-bottom" style="background: none " ng-click="addToSpotBtn();cancelSpot();">
+            <button class="modal-reward-btn u-btn u-btn--danger comforta" style="background:#fff;color:#333;font-size: 16px">{{alang[122].text}}</button>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper-reward" ng-if="modalBoost">
+    <div class="modal-reward modal--congratulations  vivify fadeIn boostDiscover" style="border-radius: 10px;">
+        <div class="modal-reward-top" style="background: none">
+            <div class="klose animated fadeInUp" style="background: #333" ng-click="closeModalBoost()" >
+                <i class="icon ion-close-round" style="margin-left:7px;line-height:27px;"></i>
+            </div>
+            <img class="modal-reward-icon u-imgResponsive animated fadeInUp rounded profileP"  style="width:120px;height:120px;background-image:url({{me.profile_photo}});">
+            <div class="modal-reward-header animated fadeInUp">{{boostTitle}}</div>
+            <div class="modal-reward-subheader animated fadeInUp comforta" style="font-size: 12px">{{boostDesc}}<br>{{alang[121].text}} <strong>{{boostPrice}}</strong></div>
+        </div>
+        <div class="modal-reward-bottom" style="background: none" ng-click="boostBtn();closeModalBoost();">
+            <button class="modal-reward-btn u-btn u-btn--danger comforta" style="background: #fff;color: #333">{{boostBtnText}}</button>
+        </div>
+    </div>
+</div>
+
+
+</ion-view>
+
+

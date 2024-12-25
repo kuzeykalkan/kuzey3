@@ -1,0 +1,4 @@
+[19-Sep-2024 04:31:04 UTC] PHP Warning:  Use of undefined constant HTTP_HOST - assumed 'HTTP_HOST' (this will throw an Error in a future version of PHP) in /home/kissmeet/public_html/app/index.php on line 4
+[14-Oct-2024 19:16:15 UTC] PHP Warning:  Use of undefined constant HTTP_HOST - assumed 'HTTP_HOST' (this will throw an Error in a future version of PHP) in /home/kissmeet/public_html/app/index.php on line 4
+[17-Nov-2024 09:10:33 UTC] PHP Warning:  Use of undefined constant HTTP_HOST - assumed 'HTTP_HOST' (this will throw an Error in a future version of PHP) in /home/kissmeet/public_html/app/index.php on line 4
+[14-Dec-2024 21:15:35 UTC] PHP Warning:  Use of undefined constant HTTP_HOST - assumed 'HTTP_HOST' (this will throw an Error in a future version of PHP) in /home/kissmeet/public_html/app/index.php on line 4
